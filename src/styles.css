@@ -144,11 +144,13 @@ em { font-style: normal; }
   .footer__brand { grid-column: 1 / -1; }
 }
 @media (max-width: 850px) {
-  /* Mobile: photo on top, text underneath on solid green: nothing overlaps the face or runs off-screen. */
-  .hero { display: block; min-height: 0; background: var(--forest); }
-  .hero::before { display: none; }
-  .hero__img { position: static; z-index: auto; display: block; height: clamp(260px, 78vw, 400px); object-position: 62% 18%; }
-  .hero__copy { width: 100%; padding: 28px var(--gutter) 44px; }
+  /* Mobile: the photo stays full-bleed behind the text. The hero is taller so the photo isn't cropped to a
+     thin strip, the subject is kept in frame (62% across, as in the original design), and the text sits over
+     a soft gradient at the bottom so the face stays visible above it. */
+  .hero { align-items: flex-end; min-height: clamp(540px, 140vw, 660px); }
+  .hero__img { object-position: 62% 18%; }
+  .hero::before { background: linear-gradient(180deg, rgba(13, 55, 39, 0) 0%, rgba(13, 55, 39, 0.12) 28%, rgba(13, 55, 39, 0.78) 58%, rgba(13, 55, 39, 0.9) 100%); }
+  .hero__copy { width: 100%; max-width: 100%; padding: 40px var(--gutter) 36px; }
   .hero h1 { font-size: clamp(36px, 10.5vw, 52px); }
   .hero__actions .btn { flex: 1 1 auto; justify-content: center; }
   .footer { grid-template-columns: 1fr 1fr; }
